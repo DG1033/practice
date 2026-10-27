@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Octalysis Audit</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Octalysis Audit</h1>
+        <p class="lede">
+          Describe a product and get an audit against Yu-kai Chou's 8 Octalysis core drives:
+          a score per drive, its White/Black Hat and Intrinsic/Extrinsic lean, and three mechanics
+          to shore up the weakest drives.
+        </p>
+      </header>
+
+      <form id="audit-form" novalidate>
+        <label for="name">Product name</label>
+        <input id="name" name="name" type="text" maxlength="100" required placeholder="e.g. Duolingo" />
+
+        <label for="description">Short description</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="6"
+          maxlength="2000"
+          required
+          placeholder="What it is, who uses it, and what keeps them coming back."
+        ></textarea>
+        <div class="form-foot">
+          <span id="char-count" class="muted">0 / 2000</span>
+          <button id="submit" type="submit">Run audit</button>
+        </div>
+      </form>
+
+      <div id="status" role="status" aria-live="polite"></div>
+
+      <section id="error" class="error" hidden>
+        <h2 id="error-title">Something went wrong</h2>
+        <p id="error-message"></p>
+        <ul id="error-details"></ul>
+      </section>
+
+      <section id="results" hidden>
+        <h2 id="results-title"></h2>
+
+        <div class="overview">
+          <figure class="chart">
+            <svg id="radar" viewBox="0 0 520 440" role="img" aria-labelledby="radar-title">
+              <title id="radar-title">Octalysis scores</title>
+            </svg>
+            <div id="tooltip" class="tooltip" hidden></div>
+            <figcaption class="muted">
+              White Hat drives at the top, Black Hat at the bottom. Extrinsic (left brain) on the left,
+              intrinsic (right brain) on the right.
+            </figcaption>
+          </figure>
+
+          <div class="leanings">
+            <div class="lean-card">
+              <h3>White Hat vs Black Hat</h3>
+              <p class="verdict" id="hat-verdict"></p>
+              <p id="hat-reason"></p>
+              <p class="muted" id="hat-computed"></p>
+            </div>
+            <div class="lean-card">
+              <h3>Intrinsic vs Extrinsic</h3>
+              <p class="verdict" id="motivation-verdict"></p>
+              <p id="motivation-reason"></p>
+              <p class="muted" id="motivation-computed"></p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Scores by drive</h3>
+        <table class="scores">
+          <thead>
+            <tr><th scope="col">Drive</th><th scope="col">Score</th><th scope="col">Why</th></tr>
+          </thead>
+          <tbody id="scores-body"></tbody>
+        </table>
+
+        <h3>Mechanics to strengthen the weakest drives</h3>
+        <ol id="mechanics" class="mechanics"></ol>
+
+        <p class="muted small" id="model-note"></p>
+      </section>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
